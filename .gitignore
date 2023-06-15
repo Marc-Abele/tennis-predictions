@@ -1,0 +1,11 @@
+# Ignorer les fichiers de build
+build/
+dist/
+.dev/
+
+# Ignorer les fichiers de configuration
+config.ini
+
+# Ignorer les fichiers de sauvegarde
+*.bak
+*.swp
