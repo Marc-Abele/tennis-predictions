@@ -3,9 +3,11 @@ build/
 dist/
 .dev/
 __pycache__/
-results - Copie - Copie.xlsx
-results.xlsx
+*.xlsx
 *.ipynb
+pred.csv
+real.csv
+*.pkl
 
 # Ignorer les fichiers de configuration
 config.ini
