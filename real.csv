@@ -1,0 +1,68 @@
+Player1,Player2,Date,Location,Tournament,Series,Court,Surface,Round,Best of,GapRank,GapOdd,SumRank,SumOdd,Month,pred_nbgames,pred_nbsets,more,less,real,diff
+Griekspoor T.,Ymer M.,2023-06-13,s-Hertogenbosch,Rosmalen Grass Court Championships,ATP250,Outdoor,Grass,1st Round,3,17,"0,64",,,6,18.0,,"1,11","3,85",26.0,-8.0
+Huesler M.,Cressy M.,2023-06-12,s-Hertogenbosch,Rosmalen Grass Court Championships,ATP250,Outdoor,Grass,1st Round,3,40,"1,44",,,6,21.0,,"1,22","2,92",21.0,0.0
+Humbert U.,Kubler J.,2023-06-12,s-Hertogenbosch,Rosmalen Grass Court Championships,ATP250,Outdoor,Grass,1st Round,3,29,"1,1",,,6,19.0,,,,18.0,1.0
+MCDonald M.,Ivashka I.,2023-06-13,s-Hertogenbosch,Rosmalen Grass Court Championships,ATP250,Outdoor,Grass,1st Round,3,14,"0,47",,,6,22.0,,"1,74","1,71",19.0,3.0
+Raonic M.,Kecmanovic M.,2023-06-13,s-Hertogenbosch,Rosmalen Grass Court Championships,ATP250,Outdoor,Grass,1st Round,3,200,"0,93",,,6,26.0,,"2,13","1,45",19.0,7.0
+Rinderknech A.,Popyrin A.,2023-06-13,s-Hertogenbosch,Rosmalen Grass Court Championships,ATP250,Outdoor,Grass,1st Round,3,7,"0,76",,,6,17.0,,,"3,12",22.0,-5.0
+Ruusuvuori E.,Nakashima B.,2023-06-13,s-Hertogenbosch,Rosmalen Grass Court Championships,ATP250,Outdoor,Grass,1st Round,3,1,"0,2",,,6,18.0,,"1,15","3,48",27.0,-9.0
+Barrère G.,Otte O.,2023-06-13,Stuttgart,Mercedes Cup,ATP250,Outdoor,Grass,1st Round,3,62,"0,4",,,6,21.0,,"1,72","1,72",19.0,2.0
+Bonzi B.,Paul T.,2023-06-13,Stuttgart,Mercedes Cup,ATP250,Outdoor,Grass,1st Round,3,49,"1,68",,,6,20.0,,"1,38","2,3",19.0,1.0
+Giron M.,Lehecka J.,2023-06-12,Stuttgart,Mercedes Cup,ATP250,Outdoor,Grass,1st Round,3,34,"0,61",,,6,25.0,,"2,1","1,46",29.0,-4.0
+Kyrgios N.,Wu Y.,2023-06-13,Stuttgart,Mercedes Cup,ATP250,Outdoor,Grass,1st Round,3,28,"2,71",,,6,22.0,,"1,72","1,73",21.0,1.0
+Moutet C.,Karatsev A.,2023-06-13,Stuttgart,Mercedes Cup,ATP250,Outdoor,Grass,1st Round,3,1,"0,69",,,6,20.0,,,"1,77",38.0,-18.0
+O'Connell C.,Altmaier C.,2023-06-13,Stuttgart,Mercedes Cup,ATP250,Outdoor,Grass,1st Round,3,2,"0,23",,,6,26.0,,"2,13","1,45",16.0,10.0
+Sonego L.,Berrettini M.,2023-06-12,Stuttgart,Mercedes Cup,ATP250,Outdoor,Grass,1st Round,3,28,"0,68",,,6,23.0,,"1,73","1,72",15.0,8.0
+Zhang Z.,Struff J.,2023-06-13,Stuttgart,Mercedes Cup,ATP250,Outdoor,Grass,1st Round,3,43,"1,54",,,6,20.0,,"2,46","1,33",17.0,3.0
+bublik,goffin,2023-06-13,s-Hertogenbosch,Rosmalen Grass Court Championships,ATP250,Outdoor,Grass,1st Round,3,79,"0,23",,,6,19.0,,"1,13","3,6",24.0,-5.0
+thompson,mpetshi perricard,2023-06-12,s-Hertogenbosch,Rosmalen Grass Court Championships,ATP250,Outdoor,Grass,1st Round,3,120,"2,64",,,6,21.0,,"1,45","2,13",23.0,-2.0
+djere,berankis,2023-06-13,s-Hertogenbosch,Rosmalen Grass Court Championships,ATP250,Outdoor,Grass,1st Round,3,152,"0,23",,,6,25.0,,"1,99","1,52",18.0,7.0
+mannarino,fils,2023-06-13,s-Hertogenbosch,Rosmalen Grass Court Championships,ATP250,Outdoor,Grass,1st Round,3,18,"0,18",,,6,18.0,,"1,14","3,52",23.0,-5.0
+shapovalov,fucsovics,2023-06-13,Stuttgart,Mercedes Cup,ATP250,Outdoor,Grass,1st Round,3,57,"0,56",,,6,23.0,,"1,6","1,63",28.0,-5.0
+humbert,ruusovuori,2023-06-14,s-Hertogenbosch,Rosmalen Grass Court Championships,ATP250,Outdoor,Grass,2nd Round,3,6,"0,41",,,6,19.0,,,,31.0,-12.0
+hijikata,huesler,2023-06-14,s-Hertogenbosch,Rosmalen Grass Court Championships,ATP250,Outdoor,Grass,2nd Round,3,51,"0,39",,,6,18.0,,,,29.0,-11.0
+bublik,sinner,2023-06-14,s-Hertogenbosch,Rosmalen Grass Court Championships,ATP250,Outdoor,Grass,2nd Round,3,38,"2,53",,,6,23.0,,,,18.0,5.0
+coric,mcdonald,2023-06-14,s-Hertogenbosch,Rosmalen Grass Court Championships,ATP250,Outdoor,Grass,2nd Round,3,53,"0,82",,,6,18.0,,,,20.0,-2.0
+hurkacz,watanuki,2023-06-14,Stuttgart,Mercedes Cup,ATP250,Outdoor,Grass,2nd Round,3,107,"2,38",,,6,18.0,,,,36.0,-18.0
+karatsev,fritz,2023-06-14,Stuttgart,Mercedes Cup,ATP250,Outdoor,Grass,2nd Round,3,40,"1,84",,,6,25.0,,"2,15","1,44",22.0,3.0
+lehecka,tiafoe,2023-06-14,Stuttgart,Mercedes Cup,ATP250,Outdoor,Grass,2nd Round,3,25,"1,9",,,6,20.0,,,,23.0,-3.0
+musetti,barrere,2023-06-14,Stuttgart,Mercedes Cup,ATP250,Outdoor,Grass,2nd Round,3,41,"0,64",,,6,23.0,,,,18.0,5.0
+oconnell,sonego,2023-06-14,Stuttgart,Mercedes Cup,ATP250,Outdoor,Grass,2nd Round,3,33,"1,23",,,6,23.0,,,,22.0,1.0
+tsitsipas,gasquet,2023-06-15,Stuttgart,Mercedes Cup,ATP250,Outdoor,Grass,2nd Round,3,50,"2,77",,,6,23.0,,"2,06","1,48",33.0,-10.0
+griekspoor,popyrin,2023-06-15,s-Hertogenbosch,Rosmalen Grass Court Championships,ATP250,Outdoor,Grass,2nd Round,3,52,"0,07",,,6,18.0,,"1,14","3,48",17.0,1.0
+medvedev,mannarino,2023-06-15,s-Hertogenbosch,Rosmalen Grass Court Championships,ATP250,Outdoor,Grass,2nd Round,3,49,"3,73",,,6,19.0,,"1,34","2,42",28.0,-9.0
+djere,de minaur,2023-06-15,s-Hertogenbosch,Rosmalen Grass Court Championships,ATP250,Outdoor,Grass,2nd Round,3,42,"2,64",,,6,16.0,,"1,11","3,92",29.0,-13.0
+thompson,raonic,2023-06-15,s-Hertogenbosch,Rosmalen Grass Court Championships,ATP250,Outdoor,Grass,2nd Round,3,200,"0,57",,,6,26.0,,,,20.0,6.0
+wu,fucsovics,2023-06-15,Stuttgart,Mercedes Cup,ATP250,Outdoor,Grass,2nd Round,3,22,"1,38",,,6,23.0,,"1,99","1,52",30.0,-7.0
+struff,paul,2023-06-15,Stuttgart,Mercedes Cup,ATP250,Outdoor,Grass,2nd Round,3,8,"0,7",,,6,20.0,,"1,3","2,55",26.0,-6.0
+mcdonald,hijikata,2023-06-16,s-Hertogenbosch,Rosmalen Grass Court Championships,ATP250,Outdoor,Grass,Quarterfinals,3,65,"1,42",,,6,26.0,,"2,36","1,36",28.0,-2.0
+mannarino,thompson,2023-06-16,s-Hertogenbosch,Rosmalen Grass Court Championships,ATP250,Outdoor,Grass,Quarterfinals,3,51,"0,45",,,6,23.0,,"1,81","1,64",33.0,-10.0
+griekspoor,de minaur,2023-06-16,s-Hertogenbosch,Rosmalen Grass Court Championships,ATP250,Outdoor,Grass,Quarterfinals,3,20,"0,84",,,6,21.0,,"1,43","2,17",29.0,-8.0
+ruusuvuori,sinner,2023-06-16,s-Hertogenbosch,Rosmalen Grass Court Championships,ATP250,Outdoor,Grass,Quarterfinals,3,33,"2,53",,,6,22.0,,"1,93","1,56",19.0,3.0
+musetti,tiafoe,2023-06-16,Stuttgart,Mercedes Cup,ATP250,Outdoor,Grass,Quarterfinals,3,5,"1,23",,,6,19.0,,"1,19","3,15",34.0,-15.0
+fucsovics,fritz,2023-06-16,Stuttgart,Mercedes Cup,ATP250,Outdoor,Grass,Quarterfinals,3,78,"2,58",,,6,18.0,,"1,15","3,45",22.0,-4.0
+hurkacz,oconnell,2023-06-16,Stuttgart,Mercedes Cup,ATP250,Outdoor,Grass,Quarterfinals,3,60,"1,55",,,6,18.0,,"1,17","3,28",20.0,-2.0
+gasquet,struff,2023-06-16,Stuttgart,Mercedes Cup,ATP250,Outdoor,Grass,Quarterfinals,3,31,"1,21",,,6,18.0,,"1,11","3,92",22.0,-4.0
+Otte,Djere,2023-06-19,Halle,Halle Open,ATP500,Outdoor,Grass,1st,Round,81,0.42,201.0,3.82,6,25.0,2.0,,,,
+Ymer,Nakashima,2023-06-19,Halle,Halle Open,ATP500,Outdoor,Grass,1st,Round,8,1.13,116.0,4.07,6,19.0,3.0,,,,
+Jarry,Moutet,2023-06-19,Halle,Halle Open,ATP500,Outdoor,Grass,1st,Round,47,0.67,107.0,3.89,6,26.0,3.0,,,,
+Shapovalov,Harris,2023-06-19,Halle,Halle Open,ATP500,Outdoor,Grass,1st,Round,267,1.62,325.0,4.38,6,19.0,2.0,,,,
+Barrere,Tsitsipas,2023-06-19,Halle,Halle Open,ATP500,Outdoor,Grass,1st,Round,53,3.31,63.0,5.69,6,21.0,3.0,,,,
+Humbert,Peniston,2023-06-19,Queens,Queen's Club Championships,ATP500,Outdoor,Grass,1st,Round,165,2.86,237.0,5.34,6,21.0,3.0,,,,
+Kecmanovic,Norrie,2023-06-19,Queens,Queen's Club Championships,ATP500,Outdoor,Grass,1st,Round,26,1.67,52.0,4.43,6,18.0,3.0,,,,
+Korda,Evans,2023-06-19,Queens,Queen's Club Championships,ATP500,Outdoor,Grass,1st,Round,3,0.32,59.0,3.8,6,21.0,2.0,,,,
+Musetti,Choinski,2023-06-19,Queens,Queen's Club Championships,ATP500,Outdoor,Grass,1st,Round,153,5.9,187.0,8.1,6,20.0,2.0,,,,
+Altmaier,Bautista,2023-06-20,Halle,Halle Open,ATP500,Outdoor,Grass,1st,Round,37,1.6,81.0,4.28,6,17.0,3.0,,,,
+Coric,Bublik,2023-06-20,Halle,Halle Open,ATP500,Outdoor,Grass,1st,Round,32,0.07,62.0,3.81,6,23.0,3.0,,,,
+Gasquet,Sinner,2023-06-20,Halle,Halle Open,ATP500,Outdoor,Grass,1st,Round,46,3.83,64.0,6.17,6,22.0,3.0,,,,
+Griekspoor,CarballesBaena,2023-06-20,Halle,Halle Open,ATP500,Outdoor,Grass,1st,Round,13,3.08,89.0,3.08,6,19.0,3.0,,,,
+Rublev,Wu,2023-06-20,Halle,Halle Open,ATP500,Outdoor,Grass,1st,Round,57,2.88,71.0,5.32,6,25.0,2.0,,,,
+Sonego,Kyrgios,2023-06-20,Halle,Halle Open,ATP500,Outdoor,Grass,1st,Round,16,0.03,66.0,3.77,6,16.0,3.0,,,,
+Zverev,Thiem,2023-06-20,Halle,Halle Open,ATP500,Outdoor,Grass,1st,Round,66,4.49,112.0,6.71,6,22.0,2.0,,,,
+Cressy,Rune,2023-06-20,Queens,Queen's Club Championships,ATP500,Outdoor,Grass,1st,Round,34,0.96,46.0,4.0,6,23.0,2.0,,,,
+DeMinaur,Murray,2023-06-20,Queens,Queen's Club Championships,ATP500,Outdoor,Grass,1st,Round,26,0.39,62.0,3.81,6,22.0,3.0,,,,
+Lehecka,Davidovich,2023-06-20,Queens,Queen's Club Championships,ATP500,Outdoor,Grass,1st,Round,4,0.5,70.0,3.88,6,21.0,2.0,,,,
+Mannarino,Broady,2023-06-20,Queens,Queen's Club Championships,ATP500,Outdoor,Grass,1st,Round,99,1.61,203.0,4.39,6,16.0,2.0,,,,
+Thompson,Raonic,2023-06-20,Queens,Queen's Club Championships,ATP500,Outdoor,Grass,1st,Round,197,0.07,403.0,3.81,6,26.0,3.0,,,,
+Tiafoe,VanDeZanschulp,2023-06-20,Queens,Queen's Club Championships,ATP500,Outdoor,Grass,1st,Round,22,1.26,46.0,4.14,6,18.0,2.0,,,,
+ZapataMiralles,Fritz,2023-06-20,Queens,Queen's Club Championships,ATP500,Outdoor,Grass,1st,Round,42,7.54,48.0,9.66,6,23.0,2.0,,,,

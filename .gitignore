@@ -2,6 +2,9 @@
 build/
 dist/
 .dev/
+__pycache__/
+results - Copie - Copie.xlsx
+results.xlsx
 
 # Ignorer les fichiers de configuration
 config.ini

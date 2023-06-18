@@ -71,30 +71,25 @@ class Stats:
         plt.show()
 
     
-
-# class Tennis_3sets(Tennis):
-#     def __init__(self, *args, **kwargs):
-#         '''
-#         Instanciates Tennis_3sets object, inherited from Tennis
-#         :param csv_file str: name of the csv file with historical datas with 2 winning sets matches
-#         '''
-#         Tennis.__init__(self, *args, **kwargs)
-#         self.description='Matchs en 2 sets gagnants'
-      
-      
-      
-# class Tennis_5sets(Tennis):
-#     def __init__(self, *args, **kwargs):
-#         '''
-#         Instanciates Tennis_5sets object, inherited from Tennis
-#         :param csv_file str: name of the csv file with historical datas with 3 winning sets matches
-#         '''
-#         Tennis.__init__(self, *args, **kwargs)
-#         self.description='Matchs en 3 sets gagnants'
-        
-        
-        
-class Predictor(Tennis):
+"""class Tennis_3sets(Tennis):
+    def __init__(self, *args, **kwargs):
+        '''
+        Instanciates Tennis_3sets object, inherited from Tennis
+        :param csv_file str: name of the csv file with historical datas with 2 winning sets matches
+        '''
+        Tennis.__init__(self, *args, **kwargs)
+        self.description='Matchs en 2 sets gagnants'
+""" 
+"""class Tennis_5sets(Tennis):
+    def __init__(self, *args, **kwargs):
+        '''
+        Instanciates Tennis_5sets object, inherited from Tennis
+        :param csv_file str: name of the csv file with historical datas with 3 winning sets matches
+        '''
+        Tennis.__init__(self, *args, **kwargs)
+        self.description='Matchs en 3 sets gagnants'
+"""            
+"""class Predictor(Tennis):
     '''
     Instanciates a Predictor class
     :param target str: the target you want to predict
@@ -151,3 +146,60 @@ class Predictor(Tennis):
             
         writer.save()
         writer.close()
+"""
+
+
+class Predictor_ATP_3sets:
+    def __init__(self):
+        historical_data='atp.csv'
+        self.historical_data=pd.read_csv(historical_data)
+        self.circuit = 'ATP'
+        self.type_of_match = '2 winning sets'
+        self.df_pred_file = 'pred.csv'
+        self.df_real_file = 'real.csv'
+        self.pipeline_nbsets = 'pipeline_atp_3sets_nbsets.pkl'
+        self.pipeline_nbgames = 'pipeline_atp_3sets_nbgames.pkl'
+        self.df_pred = None
+        self.load_data()
+        self.load_algorithms()
+
+    def load_data(self):
+        # Charger les données nécessaires (ex : fichier results.xlsx)
+        self.df_pred=pd.read_csv(self.df_pred_file)
+        self.df_real=pd.read_csv(self.df_real_file)
+        print('dfs read...')
+
+    def load_algorithms(self):
+        # Charger les algorithmes de prédiction pour chaque type de prédiction
+        # et les stocker dans des attributs de la classe (ex : self.algo_winner, self.algo_sets, self.algo_games)
+        # only works with scikit-learn 1.0.2, not with scikit-learn 1.2.2
+        with open(self.pipeline_nbsets, 'rb') as fichier1:
+            self.algo_nbsets = pickle.load(fichier1)
+        with open(self.pipeline_nbgames, 'rb') as fichier2:
+            self.algo_nbgames = pickle.load(fichier2)
+        print('algo loaded...')
+
+    def perform_predictions(self):
+        # Effectuer toutes les prédictions pour le match en utilisant les algorithmes correspondants
+        self.prediction_sets()
+        self.prediction_games()
+        return self.df_pred
+
+    def prediction_sets(self):
+        # Effectuer la prédiction du nombre de sets pour le match en utilisant self.algo_sets
+        # Enregistrer les résultats dans self.df_pred
+        s=self.algo_nbsets.predict(self.df_pred[['Location', 'Tournament', 'Series', 'Court', 'Surface', 'Round', 'GapRank', 'GapOdd', 'Month', 'SumOdd', 'SumRank']])
+        col='pred_nbsets'
+        self.df_pred[col]=s
+
+    def prediction_games(self):
+        # Effectuer la prédiction du nombre de jeux pour le match en utilisant self.algo_games
+        # Enregistrer les résultats dans self.df_pred
+        s=self.algo_nbgames.predict(self.df_pred[['Location', 'Tournament', 'Series', 'Court', 'Surface', 'Round', 'GapRank', 'GapOdd', 'Month']])
+        col='pred_nbgames'
+        self.df_pred[col]=s
+
+    def save_predictions(self):
+        new_df=pd.concat([self.df_real, self.df_pred]).reset_index(drop=True)
+        new_df.to_csv('real.csv', index=False)
+        self.df_pred.to_csv('pred.csv', index=False)
