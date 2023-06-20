@@ -164,14 +164,18 @@ class Predictor_ATP_3sets:
         self.load_algorithms()
 
     def load_data(self):
-        # Charger les données nécessaires (ex : fichier results.xlsx)
-        self.df_pred=pd.read_csv(self.df_pred_file)
+        df_pred=pd.read_csv(self.df_pred_file)
+        df_pred['SumOdd']=df_pred['SumOdd'].apply(lambda x : x.replace(',', '.'))
+        df_pred['SumOdd']=df_pred['SumOdd'].astype('float')
+        df_pred['GapOdd']=df_pred['GapOdd'].apply(lambda x : x.replace(',', '.'))
+        df_pred['GapOdd']=df_pred['GapOdd'].astype('float')
+        self.df_pred=df_pred
+        
         self.df_real=pd.read_csv(self.df_real_file)
         print('dfs read...')
 
     def load_algorithms(self):
         # Charger les algorithmes de prédiction pour chaque type de prédiction
-        # et les stocker dans des attributs de la classe (ex : self.algo_winner, self.algo_sets, self.algo_games)
         # only works with scikit-learn 1.0.2, not with scikit-learn 1.2.2
         with open(self.pipeline_nbsets, 'rb') as fichier1:
             self.algo_nbsets = pickle.load(fichier1)
