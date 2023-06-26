@@ -165,9 +165,12 @@ class Predictor_ATP_3sets:
 
     def load_data(self):
         df_pred=pd.read_csv(self.df_pred_file)
-        df_pred['SumOdd']=df_pred['SumOdd'].apply(lambda x : x.replace(',', '.'))
+        try:
+            df_pred['SumOdd']=df_pred['SumOdd'].apply(lambda x : x.replace(',', '.'))
+            df_pred['GapOdd']=df_pred['GapOdd'].apply(lambda x : x.replace(',', '.'))
+        except:
+            pass
         df_pred['SumOdd']=df_pred['SumOdd'].astype('float')
-        df_pred['GapOdd']=df_pred['GapOdd'].apply(lambda x : x.replace(',', '.'))
         df_pred['GapOdd']=df_pred['GapOdd'].astype('float')
         self.df_pred=df_pred
         
