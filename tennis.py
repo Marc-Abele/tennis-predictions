@@ -106,7 +106,7 @@ class Predictor_ATP_3sets:
     def prediction_games(self):
         # Effectuer la prédiction du nombre de jeux pour le match en utilisant self.algo_games
         # Enregistrer les résultats dans self.df_pred
-        s=self.algo_nbgames.predict(self.df_pred[['Location', 'Tournament', 'Series', 'Court', 'Surface', 'Round', 'GapRank', 'GapOdd', 'Month']])
+        s=self.algo_nbgames.predict(self.df_pred[['Location', 'Tournament', 'Series', 'Court', 'Surface', 'Round', 'GapRank', 'GapOdd', 'Month', 'SumOdd', 'SumRank']])
         col='pred_nbgames'
         self.df_pred[col]=s
 
