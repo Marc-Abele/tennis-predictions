@@ -8,6 +8,6 @@ Text file key to the data files and data source acknowledgements : http://www.te
 
 This project's goal is to study betting odds from ATP tennis matches and to run a machine learning algorithm to predict :
 - future winners, 
-- total number of games par match,
-- number of sets par match,
+- total number of games per match,
+- number of sets per match,
 - etc...
