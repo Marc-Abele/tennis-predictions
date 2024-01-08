@@ -1,15 +1,22 @@
-prefix_match_id = "g_2_"
 trained_algo = ""
-url = "https://www.flashscore.fr/tennis/"
-url_prefix = "/#/resume-du-match"
-mapping_surface = {
+PREFIX_MATCH_ID = "g_2_"
+URL = "https://www.flashscore.fr/tennis/"
+URL_MATCH_PREFIX = "https://www.flashscore.fr/match/"
+URL_MATCH_SUFFIX = "/#/resume-du-match"
+
+PATH_DF_PRED = "data/data_pred/"
+
+test = 1
+test2 = 2
+
+MAPPING_SURFACE = {
     "dur": "Hard",
     "gazon": "Grass",
     "terre battue": "Clay"
 }
 
-mapping_location_series = {
-    'Halle': 'ATP500',
+MAPPING_LOCATION_SERIES = {
+    "Halle": 'ATP500',
     'Queens Club': 'ATP250',
     'London': 'Grand Slam',
     'Bastad': 'ATP250',
@@ -135,3 +142,25 @@ mapping_location_series = {
     'Napoli': 'ATP250',
     'Banja Luka': 'ATP250'
     }
+
+MAPPING_ROUNDS_INF_1000 = {
+    "1/32 DE FINALE": "1st Round",
+    "1/16 DE FINALE": "2nd Round",
+    "1/8 DE FINALE": "3rd Round",
+    "QUARTS DE FINALE": "Quarterfinals",
+    "DEMI-FINALES": "Semifinals",
+    "FINALE": "The Final",
+    "ROUND ROBIN": "Round Robin"
+    }
+
+MAPPING_ROUNDS_SUP_1000 = {
+    "1/64 DE FINALE": "1st Round",
+    "1/32 DE FINALE": "2nd Round",
+    "1/16 DE FINALE": "3rd Round",
+    "1/8 DE FINALE": "4th Round",
+    "QUARTS DE FINALE": "Quarterfinals",
+    "DEMI-FINALES": "Semifinals",
+    "FINALE": "The Final",
+    "ROUND ROBIN": "Round Robin"
+
+}
