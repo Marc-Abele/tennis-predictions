@@ -16,8 +16,12 @@ from src.config import (
     MAPPING_ROUNDS_SUP_1000)
 
 def get_ids_match():
+    """Scrape webpage and return a list of match ids
+
+    Returns:
+        ids_match: list
+    """
     # récupération du contenu de la page
-    # url = 'https://www.flashscore.fr/tennis/'
     chrome_options = Options()
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--headless')
@@ -48,6 +52,14 @@ def get_ids_match():
     return ids_match
     
 def parse_match_page(url):
+    """Scrape a tennis match webpage and return html content
+
+    Args:
+        url (str): Link to the match webpage
+
+    Returns:
+        soup_match: BeautifoulSoup html content
+    """
     chrome_options = Options()
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--headless')
@@ -90,6 +102,14 @@ def check_match_status(content: str):
     return status
 
 def parse_title(title: str):
+    """Parse a string to find Serie, city, surface of the match and round
+
+    Args:
+        title (str): Description given when parsing the match page
+
+    Returns:
+        serie, city, surface, round: str
+    """
     try:
         serie = title.split(" - ")[0]
         city = re.search(r':\s(.*?)(?:\s*\()', title).group(1)
@@ -100,6 +120,15 @@ def parse_title(title: str):
     return serie, city, surface, round
 
 def mapping_round(series_value: str, round_value: str):
+    """Apply a mapping on rounds to translate from fr. to en. depending of series
+    
+    Args:
+        series_value (str): Rank tournament (eg: ATP250, ATP500)
+        round_value (str): Round in the tournament
+
+    Returns:
+        round: str
+    """
     if series_value in ["ATP250", "ATP500"]:
         return MAPPING_ROUNDS_INF_1000.get(round_value, round_value)
     else:
@@ -109,8 +138,6 @@ def prepare_dataset_for_pred(df: pd.DataFrame):
     df["Surface"] = df["Surface"].map(MAPPING_SURFACE)
     df["Series"] = df["Series"].map(MAPPING_LOCATION_SERIES)
     df["Round"] = df.apply(lambda row: mapping_round(row["Series"], row["Round"]))
-    # df[(df["Series"]=="ATP250")|(df["Series"]=="ATP500")]["Round"] = df[(df["Series"]=="ATP250")|(df["Series"]=="ATP500")]["Round"].apply(MAPPING_ROUNDS_INF_1000)
-    # MAPPING ROUNDS !!!
     return df
 
 def save_df_for_pred(df: pd.DataFrame):
