@@ -1,27 +1,36 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+# from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
 from bs4 import BeautifulSoup
 import re
+import argparse
 from os import path
 import pandas as pd
+from datetime import datetime, timedelta
 from src.config import (
     URL, 
     PREFIX_MATCH_ID,
     URL_MATCH_PREFIX,
     URL_MATCH_SUFFIX,
     MAPPING_SURFACE,
+    MAPPING_TOURNAMENT,
     MAPPING_LOCATION_SERIES,
     PATH_DF_PRED,
     MAPPING_ROUNDS_INF_1000,
-    MAPPING_ROUNDS_SUP_1000)
+    MAPPING_ROUNDS_SUP_1000,
+    INVALID_STATUS,
+    BUTTON_NEXT_DAY,
+    DATE_NEXT_DAY,
+    )
 
-def get_ids_match():
-    """Scrape webpage and return a list of match ids
+format_date = "%Y-%m-%d"
+today = datetime.now()
+tomorrow = today + timedelta(days=1)
 
-    Returns:
-        ids_match: list
-    """
-    # récupération du contenu de la page
+def set_driver():
     chrome_options = Options()
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--headless')
@@ -34,22 +43,64 @@ def get_ids_match():
         print(f"Error: Can't open url: {URL} {e}")
         driver.quit()
         exit()
+    return driver    
 
-    page_content = driver.page_source
-    try:
-        soup = BeautifulSoup(page_content, "html.parser")
-    except Exception as e:
-        print(f"Error: Can't create soup object: {e}")
-        driver.quit()
-        exit()
-    driver.quit()
+def get_ids_match(soup):
     div=soup.find_all('div', {'title':'Cliquez pour les détails du match!'})
-    
     # récupération des id de chaque match, servant à construire l'url
     ids_match = []
     for match in div:
         ids_match.append(match.get('id'))
     return ids_match
+    
+def get_today_html_content(driver):
+    # récupération du contenu de la page
+    # chrome_options = Options()
+    # chrome_options.add_argument('--no-sandbox')
+    # chrome_options.add_argument('--headless')
+    # chrome_options.add_argument('--disable-gpu')
+
+    # driver = webdriver.Chrome(options=chrome_options)
+    # try:
+    #     driver.get(URL)
+    # except Exception as e:
+    #     print(f"Error: Can't open url: {URL} {e}")
+    #     driver.quit()
+    #     exit()
+    today_content = driver.page_source
+    try:
+        soup = BeautifulSoup(today_content, "html.parser")
+    except Exception as e:
+        print(f"Error: Can't create soup object: {e}")
+        driver.quit()
+        exit()
+    driver.quit()
+
+    return soup
+
+def get_next_day_html_content(driver):
+    # chrome_options = Options()
+    # chrome_options.add_argument('--no-sandbox')
+    # chrome_options.add_argument('--headless')
+    # chrome_options.add_argument('--disable-gpu')
+
+    # driver = webdriver.Chrome(options=chrome_options)
+    # driver.get(URL)
+    next_day = driver.find_element(By.XPATH, BUTTON_NEXT_DAY)
+    driver.execute_script("arguments[0].click();", next_day)
+    driver.implicitly_wait(10)
+    wait = WebDriverWait(driver, 10)
+    wait.until(EC.presence_of_element_located((By.XPATH, DATE_NEXT_DAY)))
+    next_day_content = driver.page_source
+    try:
+        soup = BeautifulSoup(next_day_content, "html.parser")
+    except Exception as e:
+        print(f"Error: Can't create soup object: {e}")
+        driver.quit()
+        exit()
+    driver.quit()
+    return soup
+        
     
 def parse_match_page(url):
     """Scrape a tennis match webpage and return html content
@@ -99,6 +150,8 @@ def check_match_status(content: str):
         status = content.find_all("span", {"class":"fixedHeaderDuel__detailStatus"})[0].text
     except AttributeError:
         status = ""
+    except IndexError:
+        status = ""
     return status
 
 def parse_title(title: str):
@@ -135,14 +188,22 @@ def mapping_round(series_value: str, round_value: str):
         return MAPPING_ROUNDS_SUP_1000.get(round_value, round_value)
 
 def prepare_dataset_for_pred(df: pd.DataFrame):
+    df["Tournament"] = df["Tournament"].map(MAPPING_TOURNAMENT)
     df["Surface"] = df["Surface"].map(MAPPING_SURFACE)
     df["Series"] = df["Series"].map(MAPPING_LOCATION_SERIES)
-    df["Round"] = df.apply(lambda row: mapping_round(row["Series"], row["Round"]))
+    df["Round"] = df.apply(lambda row: mapping_round(row["Series"], row["Round"]), axis=1)
+    df["GapRank"] = abs(df["Rank1"] - df["Rank2"])
+    df["GapOdd"] = round(abs(df["Cote1"] - df["Cote2"]),2)
+    df["SumRank"] = df["Rank1"] + df["Rank2"]
+    df["SumOdd"] = round(df["Cote1"] + df["Cote2"], 2)
+    
     return df
 
-def save_df_for_pred(df: pd.DataFrame):
-    day = pd.Timestamp.now(tz="CET").strftime("%-%m-%d")
-    path_file = f"{PATH_DF_PRED}{day}.csv"
+def save_df_for_pred(df: pd.DataFrame, day: str):
+    if day == "today":
+        path_file = f"{PATH_DF_PRED}{today.strftime(format_date)}.csv"
+    else:
+        path_file = f"{PATH_DF_PRED}{tomorrow.strftime(format_date)}.csv"
     if path.exists(path_file):
         df_tmp = pd.read_csv(path_file)
     else:
@@ -171,7 +232,7 @@ def get_datas_per_match(ids_match):
         print(url_match)
         content = parse_match_page(url_match)
         status = check_match_status(content)
-        if status == "Annulé":
+        if any(inval_status in status for inval_status in INVALID_STATUS):
             continue
         else:
             title = content.find_all("span", {"class" : "tournamentHeader__country"})[0].text
@@ -223,10 +284,21 @@ def get_datas_per_match(ids_match):
     return df_tmp
 
 def main():
-    ids = get_ids_match()
+    parser = argparse.ArgumentParser(description="Scrape toute information utile pour les matchs de tennis depuis www.flashscore.fr")
+    parser.add_argument('-t', '--tomorrow', action='store_true', help="Scrape les données du lendemain")
+    args = parser.parse_args()
+    driver = set_driver()
+    if args.tomorrow:
+        day = "tomorrow"
+        soup = get_next_day_html_content(driver)
+    else:
+        day = "today"
+        soup = get_today_html_content(driver)
+
+    ids = get_ids_match(soup)
     df = get_datas_per_match(ids)
     df = prepare_dataset_for_pred(df)
-    save_df_for_pred(df)
+    save_df_for_pred(df, day)
     print(f"{len(df)} matchs found.")
     
     
