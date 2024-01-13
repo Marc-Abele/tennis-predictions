@@ -3,8 +3,11 @@ PREFIX_MATCH_ID = "g_2_"
 URL = "https://www.flashscore.fr/tennis/"
 URL_MATCH_PREFIX = "https://www.flashscore.fr/match/"
 URL_MATCH_SUFFIX = "/#/resume-du-match"
-
+INVALID_STATUS = ["Annulé", "Terminé"]
 PATH_DF_PRED = "data/data_pred/"
+
+BUTTON_NEXT_DAY = "/html/body/div[4]/div[1]/div/div/main/div[4]/div[2]/div/div[1]/div[2]/div/button[3]"
+DATE_NEXT_DAY = "/html/body/div[4]/div[1]/div/div/main/div[4]/div[2]/div/div[1]/div[2]/div/button[2]"
 
 test = 1
 test2 = 2
@@ -15,9 +18,15 @@ MAPPING_SURFACE = {
     "terre battue": "Clay"
 }
 
+MAPPING_TOURNAMENT = {
+    "Open d'Australie": "Australian Open",
+    "Internationaux de France": "French Open"
+}
+
 MAPPING_LOCATION_SERIES = {
     "Halle": 'ATP500',
     'Queens Club': 'ATP250',
+    'Wimbledon': 'Grand Slam',
     'London': 'Grand Slam',
     'Bastad': 'ATP250',
     'Gstaad': 'ATP250',
@@ -33,6 +42,7 @@ MAPPING_LOCATION_SERIES = {
     'Indianapolis': 'International',
     'Washington': 'ATP500',
     'Long Island': 'International',
+    'US Open': 'Grand Slam',
     'New York': 'Grand Slam',
     'Bucharest': 'ATP250',
     'Salvador': 'International',
@@ -48,6 +58,7 @@ MAPPING_LOCATION_SERIES = {
     'St. Petersburg': 'ATP250',
     'Stockholm': 'ATP250',
     'Paris': 'Grand Slam',
+    'Franch Open': 'Grand Slam',
     'Shanghai': 'Masters 1000',
     'Adelaide': 'International',
     'Chennai': 'ATP250',
@@ -55,6 +66,7 @@ MAPPING_LOCATION_SERIES = {
     'Auckland': 'ATP250',
     'Sydney': 'ATP250',
     'Melbourne': 'Grand Slam',
+    'Australian Open': 'Grand Slam',
     'Milan': 'International',
     'Marseille': 'ATP250',
     'San Jose': 'International',
@@ -144,21 +156,21 @@ MAPPING_LOCATION_SERIES = {
     }
 
 MAPPING_ROUNDS_INF_1000 = {
-    "1/32 DE FINALE": "1st Round",
-    "1/16 DE FINALE": "2nd Round",
-    "1/8 DE FINALE": "3rd Round",
-    "QUARTS DE FINALE": "Quarterfinals",
+    "1/32 de finale": "1st Round",
+    "1/16 de finale": "2nd Round",
+    "1/8 de finale": "3rd Round",
+    "QUARTS de finale": "Quarterfinals",
     "DEMI-FINALES": "Semifinals",
     "FINALE": "The Final",
     "ROUND ROBIN": "Round Robin"
     }
 
 MAPPING_ROUNDS_SUP_1000 = {
-    "1/64 DE FINALE": "1st Round",
-    "1/32 DE FINALE": "2nd Round",
-    "1/16 DE FINALE": "3rd Round",
-    "1/8 DE FINALE": "4th Round",
-    "QUARTS DE FINALE": "Quarterfinals",
+    "1/64 de finale": "1st Round",
+    "1/32 de finale": "2nd Round",
+    "1/16 de finale": "3rd Round",
+    "1/8 de finale": "4th Round",
+    "QUARTS de finale": "Quarterfinals",
     "DEMI-FINALES": "Semifinals",
     "FINALE": "The Final",
     "ROUND ROBIN": "Round Robin"
