@@ -1,0 +1,7 @@
+pandas
+scikit-learn
+tensorflow
+matplotlib
+plotly-express
+selenium
+bs4
