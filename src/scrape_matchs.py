@@ -16,7 +16,8 @@ from src.config import (
     URL_MATCH_SUFFIX,
     MAPPING_SURFACE,
     MAPPING_TOURNAMENT,
-    MAPPING_LOCATION_SERIES,
+    MAPPING_LOCATION_SERIES_ATP,
+    MAPPING_LOCATION_SERIES_WTA,
     PATH_DF_PRED_BEFORE,
     MAPPING_ROUNDS_INF_1000,
     MAPPING_ROUNDS_SUP_1000,
@@ -186,10 +187,13 @@ def mapping_round(series_value: str, round_value: str):
     else:
         return MAPPING_ROUNDS_SUP_1000.get(round_value, round_value)
 
-def prepare_dataset_for_pred(df: pd.DataFrame):
+def prepare_dataset_for_pred(df: pd.DataFrame, atp_or_wta: str):
     df["Tournament"] = df["Tournament"].map(MAPPING_TOURNAMENT)
     df["Surface"] = df["Surface"].map(MAPPING_SURFACE)
-    df["Series"] = df["Location"].map(MAPPING_LOCATION_SERIES)
+    if atp_or_wta.lower() == "atp":
+        df["Series"] = df["Location"].map(MAPPING_LOCATION_SERIES_ATP)
+    else:
+        df["Series"] = df["Location"].map(MAPPING_LOCATION_SERIES_WTA)
     df["Round"] = df.apply(lambda row: mapping_round(row["Series"], row["Round"]), axis=1)
     df["GapRank"] = abs(df["Rank1"] - df["Rank2"])
     df["GapOdd"] = round(abs(df["Cote1"] - df["Cote2"]),2)
@@ -198,11 +202,11 @@ def prepare_dataset_for_pred(df: pd.DataFrame):
     
     return df
 
-def save_df_for_pred(df: pd.DataFrame, day: str):
+def save_df_for_pred(df: pd.DataFrame, day: str, atp_or_wta: str):
     if day == "today":
-        path_file = f"{PATH_DF_PRED_BEFORE}{today.strftime(format_date)}.csv"
+        path_file = f"{PATH_DF_PRED_BEFORE}{atp_or_wta.upper()}-{today.strftime(format_date)}.csv"
     else:
-        path_file = f"{PATH_DF_PRED_BEFORE}{tomorrow.strftime(format_date)}.csv"
+        path_file = f"{PATH_DF_PRED_BEFORE}{atp_or_wta.upper()}-{tomorrow.strftime(format_date)}.csv"
     if path.exists(path_file):
         df_tmp = pd.read_csv(path_file)
     else:
@@ -270,7 +274,7 @@ def get_datas_per_match(ids_match):
         "Date": date,
         "Location": city,
         "Tournament": city,
-        "Series": serie,
+        "ATP or WTA": serie,
         "Court": court,
         "Surface": surface,
         "Round": round,
@@ -280,7 +284,11 @@ def get_datas_per_match(ids_match):
         "Cote2": cote2,
         })
 
-    return df_tmp
+    df_atp = df_tmp[df_tmp["ATP or WTA"]=="ATP"]
+    df_wta = df_tmp[df_tmp["ATP or WTA"]=="WTA"]
+
+    # return df_tmp    
+    return df_atp, df_wta
 
 def main():
     parser = argparse.ArgumentParser(description="Scrape toute information utile pour les matchs de tennis depuis www.flashscore.fr")
@@ -295,10 +303,12 @@ def main():
         soup = get_today_html_content(driver)
 
     ids = get_ids_match(soup)
-    df = get_datas_per_match(ids)
-    df = prepare_dataset_for_pred(df)
-    save_df_for_pred(df, day)
-    print(f"{len(df)} matchs found.")
+    df_atp, df_wta = get_datas_per_match(ids)
+    df_atp = prepare_dataset_for_pred(df_atp, atp_or_wta="atp")
+    df_wta = prepare_dataset_for_pred(df_atp, atp_or_wta="wta")
+    save_df_for_pred(df_atp, day, "atp")
+    save_df_for_pred(df_wta, day, "wta")
+    print(f"{len(df_atp) + len(df_wta)} matchs found.")
     
     
 if __name__ == '__main__':
