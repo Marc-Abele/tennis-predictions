@@ -1,6 +1,5 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-# from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
@@ -18,7 +17,7 @@ from src.config import (
     MAPPING_SURFACE,
     MAPPING_TOURNAMENT,
     MAPPING_LOCATION_SERIES,
-    PATH_DF_PRED,
+    PATH_DF_PRED_BEFORE,
     MAPPING_ROUNDS_INF_1000,
     MAPPING_ROUNDS_SUP_1000,
     INVALID_STATUS,
@@ -166,7 +165,7 @@ def parse_title(title: str):
     try:
         serie = title.split(" - ")[0]
         city = re.search(r':\s(.*?)(?:\s*\()', title).group(1)
-        surface = title.split(",")[-1].strip()
+        surface = title.split(",")[-1].strip().split(" ")[0]
         round = re.search(r'\s-\s(.*?-\s(.*?))$', title).group(2)
     except AttributeError:
         print(f"Impossible to parse title: {title}")
@@ -190,7 +189,7 @@ def mapping_round(series_value: str, round_value: str):
 def prepare_dataset_for_pred(df: pd.DataFrame):
     df["Tournament"] = df["Tournament"].map(MAPPING_TOURNAMENT)
     df["Surface"] = df["Surface"].map(MAPPING_SURFACE)
-    df["Series"] = df["Series"].map(MAPPING_LOCATION_SERIES)
+    df["Series"] = df["Location"].map(MAPPING_LOCATION_SERIES)
     df["Round"] = df.apply(lambda row: mapping_round(row["Series"], row["Round"]), axis=1)
     df["GapRank"] = abs(df["Rank1"] - df["Rank2"])
     df["GapOdd"] = round(abs(df["Cote1"] - df["Cote2"]),2)
@@ -201,16 +200,16 @@ def prepare_dataset_for_pred(df: pd.DataFrame):
 
 def save_df_for_pred(df: pd.DataFrame, day: str):
     if day == "today":
-        path_file = f"{PATH_DF_PRED}{today.strftime(format_date)}.csv"
+        path_file = f"{PATH_DF_PRED_BEFORE}{today.strftime(format_date)}.csv"
     else:
-        path_file = f"{PATH_DF_PRED}{tomorrow.strftime(format_date)}.csv"
+        path_file = f"{PATH_DF_PRED_BEFORE}{tomorrow.strftime(format_date)}.csv"
     if path.exists(path_file):
         df_tmp = pd.read_csv(path_file)
     else:
         df_tmp = pd.DataFrame()
     df = pd.concat([df_tmp, df])
     df.drop_duplicates(keep="last", inplace=True)
-    df.to_csv(path_file)
+    df.to_csv(path_file, index=False)
     
 def get_datas_per_match(ids_match):
     player1 = []
