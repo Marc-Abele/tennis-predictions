@@ -1,8 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import pickle
-import openpyxl
-
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
